@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Age</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.age}"></td>
+            </tr>
+        </tbody>
+    </table>
+<!--    <form th:method="post" th:object="${user}">-->
+    <form th:method="PATCH" th:action="@{/admin/users/{id}(id=${user.getId()})}" th:object="${user}">
+        <label for="username">username</label>
+        <input type="text" th:field="*{username}" id="username" readonly>
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</div>
+        <br>
+        <label for="age">Age</label>
+        <input type="number" th:field="*{age}" id="age"/>
+        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">age error</div>
+        <br>
+        <label for="password">Password</label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</div>
+        <br>
+        <label for="roles"> Select role</label>
+        <select id="roles" th:field="*{roles}" multiple>
+            <option th:each="role:${roles}" th:value="${{role}}" th:text="${role.getName()}"/>
+        </select>
+        <br><br>
+        <input type="submit" value="Update"/>
+    </form>
+
+    <form th:method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout">
+    </form>
+</body>
+</html>

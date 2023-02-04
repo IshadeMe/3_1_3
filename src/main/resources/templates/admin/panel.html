@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin panel</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/admin/users}">
+    <input type="submit" value="Show all users">
+</form>
+
+<form th:method="GET" th:action="@{/admin/create}">
+    <input type="submit" value="Create new user">
+</form>
+
+<form th:method="GET" th:action="@{/user}">
+    <input type="submit" value="Show my user page">
+</form>
+
+<form th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout">
+</form>
+</body>
+</html>
