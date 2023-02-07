@@ -17,7 +17,6 @@ import java.util.Optional;
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     final UserRepository userRepository;
