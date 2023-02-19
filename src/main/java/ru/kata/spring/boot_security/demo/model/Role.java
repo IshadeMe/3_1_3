@@ -24,10 +24,6 @@ public class Role implements GrantedAuthority {
     @Column(unique = true)
     String name;
 
-    @Transient
-    @ManyToMany(mappedBy = "roles")
-    @ToString.Exclude
-    List<User> users;
 
     @Override
     public String getAuthority() {

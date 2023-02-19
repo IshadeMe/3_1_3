@@ -3,6 +3,7 @@ package ru.kata.spring.boot_security.demo.service;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.Hibernate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -65,13 +66,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findUserByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-
+        Hibernate.initialize(user.getRoles());
         return user;
     }
 }
